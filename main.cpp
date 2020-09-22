@@ -26,17 +26,18 @@ int main(int argc, char** argv) {
   size_t num_of_segments = n / p;
   double* partition = new double[n + 1];
   double int_part = 0;
+  MPI_Status status;
 
   if (world_rank == 0) {
     for (size_t i = 0; i <= n; ++i) {
-      partition[i] = i * dx;
+      partition[i] = static_cast<double>(i) / static_cast<double>(n);
     }
 
     for (size_t i = 1; i < p; ++i) {
       MPI_Send(&partition[i * num_of_segments], num_of_segments + 1, MPI_DOUBLE, i, 1, MPI_COMM_WORLD);
     }
   } else {
-    MPI_Recv(partition, num_of_segments + 1, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD);
+    MPI_Recv(partition, num_of_segments + 1, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD, &status);
     int_part = Integrate(func, partition, num_of_segments);
     std::cout << "I_" << world_rank << " = " << int_part << std::endl;
   }
