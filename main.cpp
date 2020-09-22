@@ -12,8 +12,8 @@ int main(int argc, char** argv) {
   MPI_Comm_size(MPI_COMM_WORLD, &world_size);
   MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
 
-  size_t p = std::to_string(argv[1]);
-  size_t n = std::to_string(argv[2]);
+  size_t p = atoi(argv[1]);
+  size_t n = atoi(argv[2]);
   std::cout << world_rank << " " << p << " " << n << std::endl;
 
   MPI_Finalize();
