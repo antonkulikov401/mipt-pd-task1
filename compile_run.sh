@@ -1,4 +1,6 @@
 #!/bin/bash
-module add mpi/openmpi4-x86_64
-mpicxx -std=c++0x main.cpp
-sbatch ./run_sbatch_config.sh
+
+for p in {1..4} 
+do
+  sbatch -n $p --partition=RT --job-name="task1-p=$p" --output="out$p.txt" --error="error$p.txt" ./exec.sh $p 1000
+done
