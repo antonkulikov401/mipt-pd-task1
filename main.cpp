@@ -25,13 +25,21 @@ int main(int argc, char** argv) {
   size_t start_point = world_rank * n / p;
   size_t end_point = (world_rank == p - 1 ? n : start_point + n / p);
   
+  if (world_rank == 0) {
+    double partition[] = new double[n + 1];
+    for (size_t i = 0; i <= n; ++i) {
+      partition[i] = i * dx;
+    }
+  }
+  
 
   if (world_rank == 0) {
     double integral_0 = Integrate([](double x) { return 4. / (1 + x * x); }, 0, 1, n);
     std::cout << "I = " << integral << std::endl;
     std::cout << "I_0 = " << integral_0 << std::endl;
   }
-
+  
+  delete[] partition;
   MPI_Finalize();
   return 0;
 }
