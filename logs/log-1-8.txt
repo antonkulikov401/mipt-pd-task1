@@ -1,0 +1,4 @@
+p = 1
+n = 100000000
+Distributed time: 2.76971
+Sequential time: 2.76981
