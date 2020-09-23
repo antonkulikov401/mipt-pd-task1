@@ -1,6 +1,7 @@
 #!/bin/bash
 
-for p in {1..4} 
-do
-  sbatch -n $p --partition=RT --job-name="task1-p=$p" --comment="task1" --output="out$p.txt" --error="error$p.txt" --wrap="mpiexec ./prog $p 1000"
+for n in {3, 6, 8} do
+  for p in {1..8} do
+    sbatch -n $p --partition=RT --job-name="task1-$p-$n" --comment="task1" --output="out/out-$p-$n.txt" --error="error/error-$p-$n.txt" --wrap="mpiexec ./prog $p $n"
+  done
 done

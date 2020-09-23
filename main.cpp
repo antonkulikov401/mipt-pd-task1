@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <cmath>
 #include <stdlib.h>
 #include <mpi.h>
 
@@ -13,14 +16,15 @@ double Integrate(Func func, double* partition, size_t number_of_segments) {
 }
 
 int main(int argc, char** argv) {
+  // MPI initialization
   MPI_Init(&argc, &argv);
-
   int world_size = 0, world_rank = 0;
   MPI_Comm_size(MPI_COMM_WORLD, &world_size);
   MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
 
   size_t p = atoi(argv[1]);
-  size_t n = atoi(argv[2]);
+  size_t n_exp = atoi(argv[2]);
+  size_t n = static_cast<size_t>(std::pow(10, n_exp));
   
   auto func = [](double x) { return 4. / (1 + x * x); };
   size_t num_of_segments = n / p;
@@ -30,23 +34,40 @@ int main(int argc, char** argv) {
   MPI_Status status;
 
   if (world_rank == 0) {
+    // Partitioning the segment [0,1]
     for (size_t i = 0; i <= n; ++i) {
       partition[i] = static_cast<double>(i) / static_cast<double>(n);
     }
+
+    // Distributed computation of the integral 
+    double start_time = MPI_Wtime();
     for (size_t i = 0; i < p - 1; ++i) {
       MPI_Send(&partition[i * num_of_segments], num_of_segments + 1, MPI_DOUBLE, i + 1, 1, MPI_COMM_WORLD);
     }
     int_parts[0] = Integrate(func, &partition[(p - 1) * num_of_segments], n - (p - 1) * num_of_segments);
-    std::cout << "I_" << world_rank << " = " << int_parts[0] << std::endl;
     for (size_t i = 1; i < p; ++i) {
       MPI_Recv(&int_parts[i], 1, MPI_DOUBLE, i, 1, MPI_COMM_WORLD, &status);
     }
     for (size_t i = 0; i < p; ++i) {
       result += int_parts[i];
     }
+    double time_distributed = MPI_Wtime() - start_time;
+
+    // Sequential computation of the integral
+    start_time = MPI_Wtime();
     result_seq = Integrate(func, partition, n);
+    double time_seq = MPI_Wtime() - start_time;
+
+    std::cout << "I_" << world_rank << " = " << int_parts[0] << std::endl;
     std::cout << "I = " << result << std::endl;
     std::cout << "I_seq = " << result_seq << std::endl;
+
+    // Logging time of seqential and distributed computations
+    std::ofstream log("logs/log-" + std::to_string(p) + "-" + std::to_string(n_exp) + ".txt");
+    log << "p = " << p << "\n" << "n = " << n << "\n";
+    log << "Distributed time: " << time_distributed << "\n";
+    log << "Sequential time: " << time_seq;
+    log.close();
   } else {
     MPI_Recv(partition, num_of_segments + 1, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD, &status);
     int_parts[0] = Integrate(func, partition, num_of_segments);
