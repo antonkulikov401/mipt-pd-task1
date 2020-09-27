@@ -59,26 +59,17 @@ int main(int argc, char** argv) {
     for (size_t i = 0; i < p; ++i) {
       result += int_parts[i];
     }
-    double time_distributed = MPI_Wtime() - start_time;
-
-    // Sequential computation of the integral
-    start_time = MPI_Wtime();
-    result_seq = Integrate(func, partition, n);
-    double time_seq = MPI_Wtime() - start_time;
+    double time = MPI_Wtime() - start_time;
 
     std::cout << "Часть интеграла, посчитанная процессом " << world_rank 
       << ": I_" << world_rank << " = " << int_parts[0] << std::endl;
     std::cout << "Значение интеграла, полученное сложением всех частей: I = " 
       << result << std::endl;
-    std::cout << "Значение интеграла, посчитанное основным процессом " 
-      << "последовательно: I_seq = " << result_seq << std::endl;
 
-    // Logging time of seqential and distributed computations
-    std::ofstream log("logs/log-" + std::to_string(p) + "-" + 
-      std::to_string(n_exp) + ".txt");
-    log << "p = " << p << "\n" << "n = " << n << "\n";
-    log << "Distributed time: " << time_distributed << "\n";
-    log << "Sequential time: " << time_seq;
+    // Logging time of computation
+    std::ofstream log("logs/log-" + std::to_string(12 / threads) + ".txt");
+    log << "k = " << 12 / threads << "\n" << "l = " << threads << "\n";
+    log << "Time: " << time << "\n";
     log.close();
   } else {
     MPI_Recv(partition, num_of_segments + 1, MPI_DOUBLE, 0, 1, 
@@ -94,3 +85,4 @@ int main(int argc, char** argv) {
   MPI_Finalize();
   return 0;
 }
+
