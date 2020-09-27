@@ -1,4 +1,0 @@
-p = 8
-n = 1000000
-Distributed time: 0.0100029
-Sequential time: 0.017506

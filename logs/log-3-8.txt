@@ -1,4 +1,0 @@
-p = 3
-n = 100000000
-Distributed time: 2.04386
-Sequential time: 4.80762

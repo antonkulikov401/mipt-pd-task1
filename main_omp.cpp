@@ -4,10 +4,13 @@
 #include <cmath>
 #include <stdlib.h>
 #include <mpi.h>
+#include "omp.h"
 
 template <typename Func>
 double Integrate(Func func, double* partition, size_t number_of_segments) {
   double result = 0;
+
+  #pragma omp parallel for reduction (+:result)
   for (size_t i = 0; i < number_of_segments; ++i) {
     double dx = partition[i + 1] - partition[i];
     result += dx * (func(partition[i]) + func(partition[i + 1])) / 2;
@@ -24,7 +27,10 @@ int main(int argc, char** argv) {
 
   size_t p = atoi(argv[1]);
   size_t n_exp = atoi(argv[2]);
+  size_t threads = atoi(argv[3]);
   size_t n = static_cast<size_t>(std::pow(10, n_exp));
+
+  omp_set_num_threads(threads);
   
   auto func = [](double x) { return 4. / (1 + x * x); };
   size_t num_of_segments = n / p;
