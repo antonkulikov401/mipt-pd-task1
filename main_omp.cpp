@@ -31,6 +31,7 @@ int main(int argc, char** argv) {
   size_t n = static_cast<size_t>(std::pow(10, n_exp));
 
   omp_set_num_threads(threads);
+  std::cout << "Количество потоков: " << omp_get_num_threads() << std::endl;
   
   auto func = [](double x) { return 4. / (1 + x * x); };
   size_t num_of_segments = n / p;
@@ -46,7 +47,7 @@ int main(int argc, char** argv) {
     }
 
     // Distributed computation of the integral 
-    double start_time = MPI_Wtime();
+    double start_time = omp_get_wtime();
     for (size_t i = 0; i < p - 1; ++i) {
       MPI_Send(&partition[i * num_of_segments], num_of_segments + 1, 
         MPI_DOUBLE, i + 1, 1, MPI_COMM_WORLD);
@@ -59,7 +60,7 @@ int main(int argc, char** argv) {
     for (size_t i = 0; i < p; ++i) {
       result += int_parts[i];
     }
-    double time = MPI_Wtime() - start_time;
+    double time = omp_get_wtime() - start_time;
 
     std::cout << "Часть интеграла, посчитанная процессом " << world_rank 
       << ": I_" << world_rank << " = " << int_parts[0] << std::endl;

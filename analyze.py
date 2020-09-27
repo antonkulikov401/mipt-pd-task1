@@ -60,9 +60,28 @@ for n in (3, 6, 8):
     plt.plot(range(1, 9), s[n], linewidth=2,
         label='Число отрезков N = $10^{}$'.format(n))
 
+plt.title('Зависимость ускорения от количества процессов для разных разбиений')
 plt.xlabel('p, количество процессов')
 plt.ylabel('S, ускорение')
 plt.xlim(1, 8)
 plt.grid()
 plt.legend()
 plt.savefig('acceleration.png', dpi=300)
+
+
+
+times = []
+
+for i in (2, 3, 4, 6):
+    with open('logs/log-{}.txt'.format(i)) as log:
+        lines = log.readlines()
+        times.append(float(lines[2].split()[1]))
+
+plt.figure(figsize=(16, 9))
+plt.plot((2, 3, 4, 6), times)
+plt.title('Зависимость времени вычислений от отношения MPI-процессов и потоков')
+plt.xlabel('Количество MPI-процессов')
+plt.ylabel('Время вычислений, с')
+plt.xticks((2, 3, 4, 6))
+plt.grid()
+plt.savefig('openmp.png', dpi=300)
