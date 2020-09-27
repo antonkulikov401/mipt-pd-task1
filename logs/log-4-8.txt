@@ -1,4 +1,4 @@
 p = 4
 n = 100000000
-Distributed time: 0.726204
-Sequential time: 1.79691
+Distributed time: 0.639588
+Sequential time: 1.70255

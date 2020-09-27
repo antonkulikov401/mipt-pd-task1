@@ -31,8 +31,7 @@ int main(int argc, char** argv) {
   size_t n = static_cast<size_t>(std::pow(10, n_exp));
 
   omp_set_num_threads(threads);
-  std::cout << "Количество потоков: " << omp_get_num_threads() << std::endl;
-  
+
   auto func = [](double x) { return 4. / (1 + x * x); };
   size_t num_of_segments = n / p;
   double* partition = new double[n + 1];
@@ -41,6 +40,14 @@ int main(int argc, char** argv) {
   MPI_Status status;
 
   if (world_rank == 0) {
+    #pragma omp parallel
+    {
+      #pragma omp single
+      {
+        std::cout << "Количество потоков: " << omp_get_num_threads() << std::endl;
+      }
+    }
+
     // Partitioning the segment [0,1]
     for (size_t i = 0; i <= n; ++i) {
       partition[i] = static_cast<double>(i) / static_cast<double>(n);

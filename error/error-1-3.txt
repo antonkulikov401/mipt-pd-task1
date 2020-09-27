@@ -12,4 +12,4 @@ of libcuda.so.1 to get passed this issue.
 --------------------------------------------------------------------------
 libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
 libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
-[node20-111.cod.phystech.edu:31487] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
+[node20-79.cod.phystech.edu:120382] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)

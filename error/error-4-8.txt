@@ -12,15 +12,15 @@ of libcuda.so.1 to get passed this issue.
 --------------------------------------------------------------------------
 libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
 libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
-[node20-47.cod.phystech.edu:150525] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
 libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
 libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
-[node20-47.cod.phystech.edu:150521] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
+[node20-103.cod.phystech.edu:99987] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
 libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
 libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
+[node20-103.cod.phystech.edu:99991] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
+[node20-103.cod.phystech.edu:99992] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
 libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
 libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
-[node20-47.cod.phystech.edu:150528] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
-[node20-47.cod.phystech.edu:150531] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
-[node20-47.cod.phystech.edu:150510] 3 more processes have sent help message help-mpi-common-cuda.txt / dlopen failed
-[node20-47.cod.phystech.edu:150510] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[node20-103.cod.phystech.edu:99994] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
+[node20-103.cod.phystech.edu:99975] 3 more processes have sent help message help-mpi-common-cuda.txt / dlopen failed
+[node20-103.cod.phystech.edu:99975] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages

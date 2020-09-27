@@ -1,4 +1,4 @@
 p = 2
 n = 1000
-Distributed time: 0.000355863
-Sequential time: 4.6916e-05
+Distributed time: 0.00035422
+Sequential time: 4.6984e-05

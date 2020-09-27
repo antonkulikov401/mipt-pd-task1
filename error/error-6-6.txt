@@ -12,21 +12,21 @@ of libcuda.so.1 to get passed this issue.
 --------------------------------------------------------------------------
 libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
 libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
-[node20-103.cod.phystech.edu:99606] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
+libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
+libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
+[node20-62.cod.phystech.edu:92951] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
+[node20-62.cod.phystech.edu:92955] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
+libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
+libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
+[node20-62.cod.phystech.edu:92958] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
 libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
 libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
 libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
 libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
-[node20-103.cod.phystech.edu:99610] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
+[node20-62.cod.phystech.edu:92962] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
+[node20-62.cod.phystech.edu:92960] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
 libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
 libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
-[node20-103.cod.phystech.edu:99608] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
-[node20-103.cod.phystech.edu:99612] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
-libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
-libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
-libibverbs: Warning: couldn't open config directory '/etc/libibverbs.d'.
-libibverbs: Warning: no userspace device-specific driver found for /sys/class/infiniband_verbs/uverbs0
-[node20-103.cod.phystech.edu:99615] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
-[node20-103.cod.phystech.edu:99614] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
-[node20-103.cod.phystech.edu:99589] 5 more processes have sent help message help-mpi-common-cuda.txt / dlopen failed
-[node20-103.cod.phystech.edu:99589] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+[node20-62.cod.phystech.edu:92963] mca_base_component_repository_open: unable to open mca_coll_hcoll: libibcm.so.1: cannot open shared object file: No such file or directory (ignored)
+[node20-62.cod.phystech.edu:92939] 5 more processes have sent help message help-mpi-common-cuda.txt / dlopen failed
+[node20-62.cod.phystech.edu:92939] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
